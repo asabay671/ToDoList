@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DialogAnimationsExample } from './dialog-icon/dialog-animations-example';
+import { DialogAnimationsExample } from './dialog-icon/dialog-icon';
 
 @Component({
   selector: 'app-root',

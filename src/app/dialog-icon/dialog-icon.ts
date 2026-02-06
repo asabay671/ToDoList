@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { DialogAnimationsDialogComponent } from '../dialog-heart/dialog-component';
+import { DialogAnimationsDialogComponent } from '../dialog-animation-dialog/dialog-animation-dialog';
 import { CardMediaSizeExample } from '../card-media-size-example/card-media-size-example';
 
 @Component({
   selector: 'app-dialog-animations',
   standalone: true,
   imports: [MatButtonModule, MatDialogModule, CardMediaSizeExample],
-  templateUrl: 'dialog-animations-example.html',
-  styleUrl: 'dialog-animations-example.css',
+  templateUrl: './dialog-icon.html',
+  styleUrl: 'dialog-icon.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogAnimationsExample {

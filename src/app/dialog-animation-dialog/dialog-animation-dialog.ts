@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-dialog-animations-dialog',
   standalone: true,
   imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule],
-  templateUrl: './dialog-animations-example-dialog.html',
+  templateUrl: './dialog-animation-dialog.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogAnimationsDialogComponent {
