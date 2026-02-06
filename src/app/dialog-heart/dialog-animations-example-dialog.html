@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Новая карточка</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Название карточки</mat-label>
+    <input matInput [(ngModel)]="title" placeholder="Введите название" autofocus />
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Отмена</button>
+
+  <button mat-raised-button color="primary" (click)="addCard()" [disabled]="!title.trim()">
+    Добавить
+  </button>
+</mat-dialog-actions>
