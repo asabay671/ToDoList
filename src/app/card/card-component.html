@@ -1,0 +1,16 @@
+<mat-card class="example-card" tabindex="0" (keydown)="onKeyDown($event)">
+  <mat-card-header>
+    <mat-card-title>{{ task.title }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>{{ task.label }}</mat-card-content>
+  <mat-card-content>ID: {{ task.id }}</mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-button (click)="move.emit('left')" [disabled]="!canMoveLeft">←</button>
+    <button mat-button (click)="move.emit('right')" [disabled]="!canMoveRight">→</button>
+    <button mat-button color="warn" (click)="remove.emit(task.id)">
+      Удалить
+    </button>
+  </mat-card-actions>
+</mat-card>
