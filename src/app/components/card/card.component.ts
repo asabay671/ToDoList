@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { Task } from '../card-media-size-example/card-media-size.component';
+import { Task } from '../card-media-size/card-media-size.component';
 
 @Component({
   selector: 'app-card',

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ViewChild, inject } from '@angular/
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogAnimationsDialogComponent } from '../dialog-animation-dialog/dialog-animation-dialog.component';
-import { CardMediaSizeExample } from '../card-media-size-example/card-media-size.component';
+import { CardMediaSizeExample } from '../card-media-size/card-media-size.component';
 
 @Component({
   selector: 'app-dialog-animations',

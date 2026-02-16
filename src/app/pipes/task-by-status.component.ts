@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Task, Status } from '../components/card-media-size-example/card-media-size.component';
+import { Task, Status } from '../components/card-media-size/card-media-size.component';
 @Pipe({
   name: 'tasksByStatus',
   standalone: true,

@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card.component';
-import { Task, Status } from '../card-media-size-example/card-media-size.component';
+import { Task, Status } from '../card-media-size/card-media-size.component';
 import { TasksByStatusPipe } from '../../pipes/task-by-status.component';
 
 @Component({
