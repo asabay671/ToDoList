@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { CardListComponent } from '../card-list/card-list.component';
 
 export type Status = 'new' | 'inProgress' | 'review' | 'done';
 
@@ -14,13 +15,12 @@ export interface Task {
 @Component({
   selector: 'card-media-size-example',
   standalone: true,
-  templateUrl: 'card-media-size-example.html',
-  styleUrls: ['card-media-size-example.css'],
-  imports: [CommonModule, MatCardModule],
+  templateUrl: 'card-media-size.component.html',
+  imports: [CommonModule, MatCardModule, CardListComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardMediaSizeExample {
-  constructor(private cdr: ChangeDetectorRef) {}
+  private cdr = inject(ChangeDetectorRef);
 
   private nextId = 1;
 
@@ -31,22 +31,21 @@ export class CardMediaSizeExample {
     { id: this.nextId++, title: 'Конец', label: 'ггг', status: 'done' },
   ];
 
-  addTaskToNew(task: { title: string }) {
+  addTaskToNew(title: string) {
     this.tasks = [
       ...this.tasks,
       {
         id: this.nextId++,
-        title: task.title,
+        title,
         label: 'Новая',
         status: 'new',
       },
     ];
-
     this.cdr.markForCheck();
   }
 
   removeTask(id: number) {
-    this.tasks = this.tasks.filter((t) => t.id !== id);
+    this.tasks = this.tasks.filter((task) => task.id !== id);
     this.cdr.markForCheck();
   }
 
@@ -65,15 +64,5 @@ export class CardMediaSizeExample {
     });
 
     this.cdr.markForCheck();
-  }
-
-  onKeyDown(event: KeyboardEvent, taskId: number) {
-    if (event.key === 'ArrowLeft') this.moveTask(taskId, 'left');
-    if (event.key === 'ArrowRight') this.moveTask(taskId, 'right');
-    if (event.key === 'Delete') this.removeTask(taskId);
-  }
-
-  tasksByStatus(status: Status): Task[] {
-    return this.tasks.filter((t) => t.status === status);
   }
 }
