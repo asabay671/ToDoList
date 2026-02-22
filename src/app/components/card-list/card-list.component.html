@@ -2,7 +2,7 @@
   <div class="ToDoColumn" *ngFor="let status of statuses">
     <h3 class="column-title">{{ status.label }}</h3>
     <div class="column-content">
-      <app-card *ngFor="let task of tasks | tasksByStatus: status.key" [task]="task" [canMoveLeft]="canMoveLeft(status.key)"
+      <app-card *ngFor="let task of getTasksByStatus(status.key)" [task]="task" [canMoveLeft]="canMoveLeft(status.key)"
         [canMoveRight]="canMoveRight(status.key)" (remove)="remove.emit($event)"
         (move)="move.emit({ id: task.id, dir: $event })">
       </app-card>

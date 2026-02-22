@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Task, Status } from '../components/card-media-size/card-media-size.component';
+import { Task } from '../services/task.service';
+
 @Pipe({
-  name: 'tasksByStatus',
-  standalone: true,
-  pure: true,
+  name: 'taskByStatus',
 })
-export class TasksByStatusPipe implements PipeTransform {
-  transform(tasks: Task[], status: Status): Task[] {
+export class TaskByStatusPipe implements PipeTransform {
+  transform(tasks: Task[], status: string): Task[] {
+    if (!tasks) return [];
     return tasks.filter((task) => task.status === status);
   }
 }

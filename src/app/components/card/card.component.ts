@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { Task } from '../card-media-size/card-media-size.component';
 
 @Component({
   selector: 'app-card',
@@ -10,9 +9,9 @@ import { Task } from '../card-media-size/card-media-size.component';
   templateUrl: './card.component.html',
 })
 export class CardComponent {
-  @Input() task!: Task;
-  @Input() canMoveLeft = true;
-  @Input() canMoveRight = true;
+  @Input() task: any;
+  @Input() canMoveLeft: boolean = false;
+  @Input() canMoveRight: boolean = false;
 
   @Output() remove = new EventEmitter<number>();
   @Output() move = new EventEmitter<'left' | 'right'>();
