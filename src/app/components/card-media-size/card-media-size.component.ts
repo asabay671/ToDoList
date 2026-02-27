@@ -2,15 +2,9 @@ import { ChangeDetectionStrategy, Component, ChangeDetectorRef, inject } from '@
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { CardListComponent } from '../card-list/card-list.component';
+import { Task } from '../../models/model';
 
 export type Status = 'new' | 'inProgress' | 'review' | 'done';
-
-export interface Task {
-  id: number;
-  title: string;
-  label: string;
-  status: Status;
-}
 
 @Component({
   selector: 'card-media-size-example',

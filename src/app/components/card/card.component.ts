@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { Task } from '../../models/model';
+
 
 @Component({
   selector: 'app-card',
@@ -9,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './card.component.html',
 })
 export class CardComponent {
-  @Input() task: any;
+  @Input() task!: Task;
   @Input() canMoveLeft: boolean = false;
   @Input() canMoveRight: boolean = false;
 

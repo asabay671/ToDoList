@@ -7,9 +7,9 @@
   <mat-card-content>ID: {{ task.id }}</mat-card-content>
 
   <mat-card-actions align="end">
-    <button mat-button (click)="move.emit('left')" [disabled]="!canMoveLeft">←</button>
-    <button mat-button (click)="move.emit('right')" [disabled]="!canMoveRight">→</button>
-    <button mat-button color="warn" (click)="remove.emit(task.id)">
+    <button mat-button (click)="moveLeft()" [disabled]="!canMoveLeft">←</button>
+    <button mat-button (click)="moveRight()" [disabled]="!canMoveRight">→</button>
+    <button mat-button color="warn" (click)="removeTask()">
       Удалить
     </button>
   </mat-card-actions>

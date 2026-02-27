@@ -1,18 +1,22 @@
-import { Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
-import { TaskService, Task, } from '../../services/task.service';
+import { Component, EventEmitter, OnInit, Output, Input, inject} from '@angular/core';
+import { TaskService } from '../../services/task.service';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card.component';
+import { take } from 'rxjs';
+import { Task } from '../../models/model';
+import { TaskByStatusPipe } from '../../pipes/task-by-status.component';
+import { TaskMoveEvent } from '../../models/model';
 
 @Component({
   selector: 'app-card-list',
   standalone: true,
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule, CardComponent, TaskByStatusPipe],
   templateUrl: './card-list.component.html',
   styleUrl: './card-list.component.css',
 })
 export class CardListComponent implements OnInit {
 
-  statuses = [
+  public statuses = [
     { key: 'new', label: 'Новый' },
     { key: 'inProgress', label: 'В работе' },
     { key: 'review', label: 'Проверка' },
@@ -21,26 +25,24 @@ export class CardListComponent implements OnInit {
 
   @Input() tasks: Task[] = [];
   @Output() remove = new EventEmitter<number>();
-  @Output() move = new EventEmitter<{ id: number; dir: 'left' | 'right' }>();
+  @Output() move = new EventEmitter<TaskMoveEvent>();
 
-  constructor(private taskService: TaskService) {}
+  private taskService = inject(TaskService);
 
   ngOnInit(): void {
     this.loadTasks();
   }
 
   loadTasks() {
-    this.taskService.getTasks().subscribe((data) => {
+    this.taskService.getTasks()
+      .pipe(take(1))
+      .subscribe((data) => {
       this.tasks = data;
     });
   }
 
-  getTasksByStatus(status: string) {
-    return this.tasks.filter((task) => task.status === status);
-  }
-
   canMoveLeft(status: string) {
-    return status !== 'todo';
+    return status !== 'new';
   }
 
   canMoveRight(status: string) {
@@ -53,11 +55,11 @@ export class CardListComponent implements OnInit {
     });
   }
 
-  onMove(event: { id: number; dir: string }) {
-    const task = this.tasks.find((t) => t.id === event.id);
+  onMove(event: TaskMoveEvent) {
+    const task = this.tasks.find((task) => task.id === event.id);
     if (!task) return;
 
-    const currentIndex = this.statuses.findIndex((s) => s.key === task.status);
+    const currentIndex = this.statuses.findIndex((status) => status.key === task.status);
 
     let newIndex = currentIndex;
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogAnimationsDialogComponent } from '../dialog-animation-dialog/dialog-animation-dialog.component';
@@ -16,7 +16,7 @@ export class DialogAnimationsExample {
   @ViewChild(CardMediaSizeExample)
   private boardComponent!: CardMediaSizeExample;
 
-  constructor(private dialog: MatDialog) {}
+  private dialog = inject(MatDialog)
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAnimationsDialogComponent);
