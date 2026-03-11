@@ -1,0 +1,52 @@
+{
+  "tasks": [
+    {
+      "id": "e0e8",
+      "title": "ааааааааааааа",
+      "label": "Новая",
+      "status": "done"
+    },
+    {
+      "id": "8dea",
+      "title": "ввввввввввввв",
+      "label": "Новая",
+      "status": "new"
+    },
+    {
+      "id": "c3c9",
+      "title": "skkdskdsakdkdsa",
+      "label": "Новая",
+      "status": "done"
+    },
+    {
+      "id": "644f",
+      "title": "dsfsdfdsfdsf",
+      "label": "Новая",
+      "status": "review"
+    },
+    {
+      "id": "975c",
+      "title": "sjsjdfjdsjfsasaad",
+      "label": "Новая",
+      "status": "new"
+    },
+    {
+      "id": "2bc4",
+      "title": "xxzcxzcxzvxcv",
+      "label": "Новая",
+      "status": "review"
+    },
+    {
+      "id": "aa0d",
+      "title": "ewfoewofweifwie",
+      "label": "Новая",
+      "status": "inProgress"
+    },
+    {
+      "id": "7a62",
+      "title": "sdsadsa",
+      "label": "Новая",
+      "status": "inProgress"
+    }
+  ]
+}

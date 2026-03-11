@@ -1,4 +1,4 @@
-import { Status } from "../components/card-media-size/card-media-size.component";
+
 
 export interface Task {
   id: number;
@@ -13,3 +13,5 @@ export interface TaskMoveEvent {
   id: number;
   dir: MoveDirection;
 }
+
+export type Status = 'new' | 'inProgress' | 'review' | 'done';

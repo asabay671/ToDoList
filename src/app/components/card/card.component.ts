@@ -11,6 +11,9 @@ import { Task } from '../../models/model';
   templateUrl: './card.component.html',
 })
 export class CardComponent {
+
+  tabindex = '0';
+
   @Input() task!: Task;
   @Input() canMoveLeft: boolean = false;
   @Input() canMoveRight: boolean = false;

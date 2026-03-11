@@ -2,10 +2,12 @@
   <div class="ToDoColumn" *ngFor="let status of statuses">
     <h3 class="column-title">{{ status.label }}</h3>
     <div class="column-content">
-      <app-card *ngFor="let task of tasks | taskByStatus: status.key" [task]="task" [canMoveLeft]="canMoveLeft(status.key)"
-        [canMoveRight]="canMoveRight(status.key)" (remove)="remove.emit($event)"
-        (move)="move.emit({ id: task.id, dir: $event })">
-      </app-card>
+      <ng-container *ngIf="tasks$ | async as tasks">
+        <app-card *ngFor="let task of tasks | taskByStatus: status.key" [task]="task"
+          [canMoveLeft]="canMoveLeft(task.status)" [canMoveRight]="canMoveRight(task.status)"
+          (remove)="onRemove(task.id)" (move)="onMove({ id: task.id, dir: $event })">
+        </app-card>
+      </ng-container>
     </div>
   </div>
 </div>

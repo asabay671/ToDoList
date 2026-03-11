@@ -1,10 +1,12 @@
-import { Component, EventEmitter, OnInit, Output, Input, inject} from '@angular/core';
-import { TaskService } from '../../services/task.service';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card.component';
-import { take } from 'rxjs';
-import { Task } from '../../models/model';
 import { TaskByStatusPipe } from '../../pipes/task-by-status.component';
+import { Store } from '@ngrx/store';
+import * as TaskActions from '../../store/task/task.actions';
+import { selectTasks } from '../../store/task/task.selectors';
+import { take } from 'rxjs';
+import { Status } from '../../models/model';
 import { TaskMoveEvent } from '../../models/model';
 
 @Component({
@@ -15,6 +17,9 @@ import { TaskMoveEvent } from '../../models/model';
   styleUrl: './card-list.component.css',
 })
 export class CardListComponent implements OnInit {
+  private store = inject(Store);
+
+  tasks$ = this.store.select(selectTasks);
 
   public statuses = [
     { key: 'new', label: 'Новый' },
@@ -23,22 +28,8 @@ export class CardListComponent implements OnInit {
     { key: 'done', label: 'Сделано' },
   ];
 
-  @Input() tasks: Task[] = [];
-  @Output() remove = new EventEmitter<number>();
-  @Output() move = new EventEmitter<TaskMoveEvent>();
-
-  private taskService = inject(TaskService);
-
   ngOnInit(): void {
-    this.loadTasks();
-  }
-
-  loadTasks() {
-    this.taskService.getTasks()
-      .pipe(take(1))
-      .subscribe((data) => {
-      this.tasks = data;
-    });
+    this.store.dispatch(TaskActions.loadTasks());
   }
 
   canMoveLeft(status: string) {
@@ -50,26 +41,29 @@ export class CardListComponent implements OnInit {
   }
 
   onRemove(id: number) {
-    this.taskService.deleteTask(id).subscribe(() => {
-      this.loadTasks();
-    });
+    this.store.dispatch(TaskActions.deleteTask({ id }));
   }
 
   onMove(event: TaskMoveEvent) {
-    const task = this.tasks.find((task) => task.id === event.id);
-    if (!task) return;
+    this.tasks$.pipe(take(1)).subscribe((tasks) => {
+      const task = tasks.find((tasks) => tasks.id === event.id);
+      if (!task) return;
 
-    const currentIndex = this.statuses.findIndex((status) => status.key === task.status);
+      const currentIndex = this.statuses.findIndex((statuses) => statuses.key === task.status);
 
-    let newIndex = currentIndex;
+      let newIndex = currentIndex;
 
-    if (event.dir === 'left') newIndex--;
-    if (event.dir === 'right') newIndex++;
+      if (event.dir === 'left') newIndex--;
+      if (event.dir === 'right') newIndex++;
 
-    const newStatus = this.statuses[newIndex].key;
+      const newStatus = this.statuses[newIndex].key as Status;
 
-    this.taskService.updateTask(task.id, newStatus).subscribe(() => {
-      this.loadTasks();
+      this.store.dispatch(
+        TaskActions.updateTask({
+          id: task.id,
+          status: newStatus,
+        }),
+      );
     });
   }
 }
