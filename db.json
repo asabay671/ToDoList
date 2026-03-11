@@ -1,52 +1,40 @@
 {
   "tasks": [
     {
-      "id": "e0e8",
-      "title": "ааааааааааааа",
-      "label": "Новая",
-      "status": "done"
-    },
-    {
-      "id": "8dea",
-      "title": "ввввввввввввв",
-      "label": "Новая",
-      "status": "new"
-    },
-    {
-      "id": "c3c9",
-      "title": "skkdskdsakdkdsa",
-      "label": "Новая",
-      "status": "done"
-    },
-    {
-      "id": "644f",
-      "title": "dsfsdfdsfdsf",
+      "id": "35e8",
+      "title": "f",
       "label": "Новая",
       "status": "review"
     },
     {
-      "id": "975c",
-      "title": "sjsjdfjdsjfsasaad",
+      "id": "53d8",
+      "title": "a",
       "label": "Новая",
       "status": "new"
     },
     {
-      "id": "2bc4",
-      "title": "xxzcxzcxzvxcv",
+      "id": "f163",
+      "title": "z",
+      "label": "Новая",
+      "status": "inProgress"
+    },
+    {
+      "id": "4a55",
+      "title": "x",
+      "label": "Новая",
+      "status": "done"
+    },
+    {
+      "id": "1d70",
+      "title": "m",
       "label": "Новая",
       "status": "review"
     },
     {
-      "id": "aa0d",
-      "title": "ewfoewofweifwie",
+      "id": "34f0",
+      "title": "q",
       "label": "Новая",
-      "status": "inProgress"
-    },
-    {
-      "id": "7a62",
-      "title": "sdsadsa",
-      "label": "Новая",
-      "status": "inProgress"
+      "status": "new"
     }
   ]
 }
